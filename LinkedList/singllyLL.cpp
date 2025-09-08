@@ -27,6 +27,16 @@ void insertAtHead(Node* &head,int data){
     head = newNode;
 }
 
+void print(Node* &add){
+    Node *temp;
+    temp = add;
+    while(temp!= NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
 void insertAtTail(Node *&tail,int data){
     Node *newNode = new Node(data);
     tail->next = newNode;
@@ -80,15 +90,6 @@ void deleteAtPosition(Node *&head,Node*& tail,int pos){
     delete curr;
 }
 
-void print(Node* &add){
-    Node *temp;
-    temp = add;
-    while(temp!= NULL){
-        cout<<temp->data<<" ";
-        temp = temp->next;
-    }
-    cout<<endl;
-}
 int main(){
     Node *node1 = new Node(10);
     Node *head = node1;
