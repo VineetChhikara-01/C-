@@ -58,7 +58,7 @@ bool checkPalindromeArray(Node *head){
 
 Node* middle(Node *head){
     Node *slow = head;
-    Node *fast = head;
+    Node *fast = head->next;
     while(fast!=NULL && fast->next!=NULL){
         slow = slow->next;
         fast = fast->next;
@@ -108,13 +108,9 @@ bool check(Node* head){
 
 int main(){
     Node *head = new Node(1);
+    insertNode(head,1);
     insertNode(head,2);
-    insertNode(head,3);
-    insertNode(head,4);
-    insertNode(head,5);
-    insertNode(head,4);
-    insertNode(head,3);
-    insertNode(head,2);
+    // insertNode(head,2);
     insertNode(head,1);
     print(head);
 
