@@ -109,6 +109,67 @@ Node* cloneWithOn(Node* head){
     return cloneHead;
 }
 
+// time complexity O(n) and space O(1)
+Node * clone3(Node* head){
+    if(head==NULL){
+        return head;
+    }
+
+    Node *temp = head;
+    // clone with next
+    Node *cloneHead = NULL;
+    Node *cloneTail = NULL;
+    while(temp!=NULL){
+        insertAtTail(cloneHead,cloneTail,temp->data);
+        temp = temp->next;
+    }
+
+    // mapping
+    temp = head;
+    Node *temp2 = cloneHead;
+    Node *tempNext = NULL;
+    Node *temp2Next = NULL;
+    while(temp2!=NULL){
+        tempNext = temp->next;
+        temp2Next = temp2->next;
+        temp ->next = temp2;
+        temp2->next = tempNext;
+        temp = tempNext;
+        temp2 = temp2Next;
+    }
+
+    // random pointer
+    temp = head;
+    while(temp!=NULL){
+        Node* randomNode = temp->random;
+        if(randomNode!=NULL){
+            temp->next->random = randomNode->next;
+        } else{
+            temp->next->random = NULL;
+        }
+        temp = temp->next->next;
+    }
+
+    // reversing the changes of original LL
+    temp = head;
+    temp2 = head->next;
+    tempNext = NULL;
+    temp2Next = NULL;
+    while(temp2!=NULL){
+        tempNext = temp2->next;
+        if(tempNext!=NULL){
+            temp2Next = tempNext->next;
+        } else{
+            temp2Next = NULL;
+        }
+        temp ->next = tempNext;
+        temp2->next = temp2Next;
+        temp = tempNext;
+        temp2 = temp2Next;
+    }
+    return cloneHead;
+}
+
 int main(){
     Node* head = NULL;
 
@@ -138,10 +199,14 @@ int main(){
 
     print(head);
     cout<<"Cloned LL "<<endl;
-    Node* cloneHead = clone(head);
-    print(cloneHead);
+    // Node* cloneHead = clone(head);
+    // print(cloneHead);
     // O(n)
-    print(cloneWithOn(head));
+    // print(cloneWithOn(head));
+    // print(head);
+    Node* cloneHead = clone3(head);
+    print(cloneHead);
+    delete cloneHead;
     delete head;
     return 0;
 }
