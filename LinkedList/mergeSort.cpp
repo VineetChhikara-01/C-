@@ -127,6 +127,8 @@ int main(){
     Node* ans = mergeSort(head);
 
     print(ans);
+
+    delete head;
     
     return 0;
 }
