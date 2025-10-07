@@ -34,6 +34,38 @@ Node *build(Node *root)
     return root;
 }
 
+void buildByLevelOrder(Node *& root){
+    int d;
+    cout<<"Root"<<endl;
+    cin>>d;
+    if(d==-1){
+        return ;
+    }
+    root = new Node(d);
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        Node *temp = q.front();
+        q.pop();
+        cout<<"Left of "<<temp->data<<endl;
+        int l;
+        cin>>l;
+        if(l!=-1){
+            temp->left = new Node(l);
+            q.push(temp->left);
+        }
+        cout<<"Right of "<<temp->data<<endl;
+        int r;
+        cin>>r;
+        if(r != -1){
+            temp->right = new Node(r);
+            q.push(temp->right);
+        }
+    }
+
+}
+
 // BFS
 void bfs(Node *root)
 {
@@ -89,7 +121,8 @@ void postorder(Node *root){
 int main()
 {
     Node *root = NULL;
-    root = build(root);
+    // root = build(root);
+    buildByLevelOrder(root);
     cout<<"BFS ";
     bfs(root);
     cout<<endl<<"InOrder ";
@@ -100,3 +133,4 @@ int main()
     postorder(root);
 }
 // 5 4 3 2 -1 -1 3 -1 -1 5 -1 -1 4 -1 -1
+// 5 4 4 3 5 2 5 -1 -1 -1 -1 -1 -1 -1 -1
