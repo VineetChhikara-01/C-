@@ -34,14 +34,6 @@ Node *build(Node *root)
     return root;
 }
 
-// DFS
-void dfs(Node *root){
-    if(root==NULL){
-        return;
-    }
-    
-}
-
 // BFS
 void bfs(Node *root)
 {
